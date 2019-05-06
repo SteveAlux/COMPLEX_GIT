@@ -1,0 +1,10 @@
+*{
+    padding:5px;
+    list-style: none;
+}
+.hidden{
+    display: none;
+}
+#item{
+    border: 1px solid black;
+}
