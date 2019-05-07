@@ -13,11 +13,11 @@ function formatParams(param){
 }
 
 
-function getData(search, limit){
+function getData(limit, state){
     const param= {
         api_key : apiKey,
-        q : search ,
-        limit
+        limit,
+        stateCode: state
     };
 
     const queryString = formatParams(param);
@@ -49,6 +49,7 @@ function displayResults(responseJson){
             <br>
             <p>Park's site : <a href=${responseJson.data[i].url}>${responseJson.data[i].url}</a></p>
             <p>Park's Direction : <a href=${responseJson.data[i].directionsUrl}>${responseJson.data[i].directionsUrl}</a></p>
+            <p>STATE: ${responseJson.data[i].states}</p>
 
         `)
     }
@@ -58,9 +59,19 @@ function displayResults(responseJson){
 function handleSub(){
     $('#js-form').submit(event => {
         event.preventDefault();
-        const searchTerm = $('#js-search-term').val();
+        const newSearch = $('#js-search-term').val().replace(/\s/g,'')
+        console.log(newSearch);
+        // for (let i = 0 ; i<50 ; i++){
+            
+        //     if (searchTerm === stateCodes[i]  && i<50){
+
+        //     }
+        //     else if (searchTerm !== stateCodes[i] && i>50){
+
+        //     }
+        // }
         const limit = 9;
-        getData(searchTerm,limit);
+        getData(limit, newSearch);
     });
 }
 
